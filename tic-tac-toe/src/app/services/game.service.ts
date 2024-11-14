@@ -8,6 +8,7 @@ export class GameService {
 
   public board: SquareValue[] = [];
   activePlayer: SquareValue = "X";
+  winner: SquareValue = null;
   turnCount = 0;
   isGameRunning: boolean = false;
   isGameOver: boolean = false;
@@ -17,8 +18,8 @@ export class GameService {
   }
 
   newGame() {
-    console.log("Resetting");
     this.activePlayer = "X";
+    this.winner = null;
     this.turnCount = 0;
     this.isGameRunning = false;
     this.isGameOver = false;
@@ -26,7 +27,7 @@ export class GameService {
   }
 
   squareInteraction(idx: number) {
-    if (this.board[idx]) return;
+    if (this.board[idx] || this.isGameOver) return;
     if (!this.turnCount) this.isGameRunning = true;
 
     this.board[idx] = this.activePlayer;
@@ -35,6 +36,7 @@ export class GameService {
     if (this._isGameOver) {
       this.isGameRunning = false;
       this.isGameOver = true;
+      this.winner = this.activePlayer;
     } else {
       this.activePlayer = this.activePlayer === "X" ? "O" : "X";
     }

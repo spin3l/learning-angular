@@ -1,16 +1,35 @@
-<div 
-    class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200  drop-shadow-md" 
-    [ngClass]="{
-        'cursor-pointer': !gameService.isGameOver && !state,
-        'hover:bg-teal-300': !gameService.isGameOver && !state,
-        'bg-teal-300': gameService.isGameOver
-    }"
->
-    <p 
-        class="text-gray-600 text-6xl text-center"
+
+
+<ng-container 
+        class="" 
+        [ngTemplateOutlet]="
+            gameService.winner 
+            ? (gameService.winner === 'O' ? o : x)
+            : state 
+                ? (state === 'O' ? o : x) 
+                : (gameService.activePlayer == 'O' ? o : x)">
+</ng-container>
+
+<ng-template #o>
+    <div 
+        class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200 drop-shadow-md transition-colors delay-0 duration-500 ease-in-out" 
         [ngClass]="{
-            'text-teal-500': state == 'O',
-            'text-amber-500': state == 'X'
-            }"    
-    >{{ state }}</p>
-</div>
+            'cursor-pointer': !gameService.isGameOver && !state,
+            'hover:bg-teal-300': !gameService.isGameOver && !state,
+            'bg-teal-300': gameService.isGameOver
+        }">
+        <p class="text-6xl text-center text-teal-500">{{ state }}</p>
+    </div>
+</ng-template>
+
+<ng-template #x>
+    <div 
+        class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200 drop-shadow-md transition-colors delay-0 duration-500 ease-in-out" 
+        [ngClass]="{
+            'cursor-pointer': !gameService.isGameOver && !state,
+            'hover:bg-amber-300': !gameService.isGameOver && !state,
+            'bg-amber-300': gameService.isGameOver
+        }">
+        <p class="text-6xl text-center text-amber-500">{{ state }}</p>
+    </div>
+</ng-template>
