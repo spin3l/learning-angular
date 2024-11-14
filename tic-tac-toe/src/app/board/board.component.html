@@ -1,5 +1,10 @@
-<section w-full>
-    <div class="square-container h-48" *ngFor="let square of boardService.board">
-        <app-square [square]="square" border-blue></app-square>
+<section class="size-full">
+    <div class="grid grid-cols-3 grid-rows-3 gap-2 w-96 h-96">
+        <ng-container *ngFor="let state of boardService.board; let i = index">
+            <app-square 
+                [state]="state" 
+                (click)="boardService.isGameOver ? null : onSquareClick(i)">
+            </app-square>
+        </ng-container>
     </div>
 </section>

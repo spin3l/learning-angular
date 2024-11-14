@@ -1,0 +1,16 @@
+<div 
+    class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200  drop-shadow-md" 
+    [ngClass]="{
+        'cursor-pointer': !gameService.isGameOver && !state,
+        'hover:bg-teal-300': !gameService.isGameOver && !state,
+        'bg-teal-300': gameService.isGameOver
+    }"
+>
+    <p 
+        class="text-gray-600 text-6xl text-center"
+        [ngClass]="{
+            'text-teal-500': state == 'O',
+            'text-amber-500': state == 'X'
+            }"    
+    >{{ state }}</p>
+</div>

@@ -1,15 +1,7 @@
 .game-square {
-    height: 96%;
     text-align: center;
     line-height: 0.85;
     cursor: pointer;
-}
-
-p {
-    display: inline;
-    margin: 0px;
-    font-size: 14rem;
-    overflow: hidden;
 }
 
 .noClick {

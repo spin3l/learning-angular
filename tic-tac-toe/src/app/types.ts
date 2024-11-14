@@ -1,5 +1,1 @@
-export type Square = {
-    id: number,
-    state: string | null
-}
-
+export type SquareValue = "X" | "O" | null;

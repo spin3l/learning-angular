@@ -12,12 +12,13 @@ import { SquareComponent } from '../square/square.component';
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class BoardComponent {
 
   constructor( public boardService: GameService ) { }
 
-  ngOnInit() {}
-
+  onSquareClick(idx: number) {
+    this.boardService.squareInteraction(idx);
+  }
 }
