@@ -10,9 +10,12 @@
 
     <ng-container [ngTemplateOutlet]="gameService.isGameOver ? active_button : inactive_button"/>
     
-    <a href="https://github.com/spin3l/" class="absolute bottom-16 size-8">
-        <img src="github.png" />
-    </a>
+    <div class="flex flex-row absolute bottom-8">
+        <p class="italic flex px-2">Made with ❤ by </p>
+        <a class="flex bottom-16 size-8" href="https://github.com/spin3l/" >
+            <img src="github.png" />
+        </a>
+    </div>
 </div>
 
 <ng-template #inactive_button>
