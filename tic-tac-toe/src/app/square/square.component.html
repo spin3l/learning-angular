@@ -1,35 +1,37 @@
-
-
-<ng-container 
-        class="" 
-        [ngTemplateOutlet]="
-            gameService.winner 
-            ? (gameService.winner === 'O' ? o : x)
-            : state 
-                ? (state === 'O' ? o : x) 
+<ng-container class="" [ngTemplateOutlet]="
+            state 
+                ? (state === 'X' ? x : o) 
                 : (gameService.activePlayer == 'O' ? o : x)">
 </ng-container>
 
-<ng-template #o>
-    <div 
-        class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200 drop-shadow-md transition-colors delay-0 duration-500 ease-in-out" 
+<ng-template #x>
+    <div class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 drop-shadow-md transition-colors ease-out duration-300 delay-0"
         [ngClass]="{
             'cursor-pointer': !gameService.isGameOver && !state,
-            'hover:bg-teal-300': !gameService.isGameOver && !state,
-            'bg-teal-300': gameService.isGameOver
+            'bg-teal-200': !state && !gameService.isGameOver,
+            'bg-amber-300': state && !gameService.isGameOver || gameService.winner === 'X',
+            'bg-teal-300': gameService.winner === 'O',
+            'hover:bg-amber-300': !gameService.isGameOver && !state,
         }">
-        <p class="text-6xl text-center text-teal-500">{{ state }}</p>
+        <p class="text-6xl text-center text-amber-600">{{ state }}</p>
     </div>
 </ng-template>
 
-<ng-template #x>
-    <div 
-        class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 bg-teal-200 drop-shadow-md transition-colors delay-0 duration-500 ease-in-out" 
+<ng-template #o>
+    <div class="size-full place-content-center rounded-lg border-4 border-double border-amber-200 drop-shadow-md transition-colors ease-out duration-300 delay-0"
         [ngClass]="{
             'cursor-pointer': !gameService.isGameOver && !state,
-            'hover:bg-amber-300': !gameService.isGameOver && !state,
-            'bg-amber-300': gameService.isGameOver
+            'bg-teal-200': !state && !gameService.isGameOver,
+            'bg-teal-300': state && !gameService.isGameOver || gameService.winner === 'O',
+            'bg-amber-300': gameService.winner === 'X',
+            'hover:bg-teal-300': !gameService.isGameOver && !state,
         }">
-        <p class="text-6xl text-center text-amber-500">{{ state }}</p>
+        <p class="text-6xl text-center text-teal-600">{{ state }}</p>
     </div>
 </ng-template>
+
+<ng-template #winner>
+
+</ng-template>
+
+

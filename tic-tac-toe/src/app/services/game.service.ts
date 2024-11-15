@@ -33,7 +33,7 @@ export class GameService {
     this.board[idx] = this.activePlayer;
     this.turnCount++;
 
-    if (this._isGameOver) {
+    if (this.checkGameOver()) {
       this.isGameRunning = false;
       this.isGameOver = true;
       this.winner = this.activePlayer;
@@ -42,7 +42,7 @@ export class GameService {
     }
   }
 
-  get _isGameOver(): boolean {
+  private checkGameOver(): boolean {
     if (this.turnCount > 8) return true;
 
     const lines = [
