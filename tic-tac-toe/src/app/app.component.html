@@ -1,4 +1,4 @@
-<div class="h-screen bg-teal-50 flex flex-col gap-y-2 justify- items-center">
+<div class="h-screen flex flex-col gap-y-2 items-center">
 
     <h1 class="text-gray-800 text-6xl py-16">
         Tic-Tac-Toe
@@ -10,6 +10,9 @@
 
     <ng-container [ngTemplateOutlet]="gameService.isGameOver ? active_button : inactive_button"/>
     
+    <a href="https://github.com/spin3l/" class="absolute bottom-16 size-8">
+        <img src="github.png" />
+    </a>
 </div>
 
 <ng-template #inactive_button>
