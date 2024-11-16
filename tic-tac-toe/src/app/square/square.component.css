@@ -1,9 +1,0 @@
-.game-square {
-    text-align: center;
-    line-height: 0.85;
-    cursor: pointer;
-}
-
-.noClick {
-    pointer-events: none;
-}
