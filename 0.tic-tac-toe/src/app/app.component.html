@@ -1,0 +1,59 @@
+<div class="h-screen flex flex-col gap-y-2 items-center">
+
+    <h1 class="text-gray-800 text-6xl py-16">
+        Tic-Tac-Toe
+    </h1>
+
+    <ng-container [ngTemplateOutlet]="gameService.isGameOver ? player_won : player_turn"></ng-container>
+
+    <app-board></app-board>
+
+    <ng-container [ngTemplateOutlet]="gameService.isGameOver ? active_button : inactive_button"/>
+    
+    @defer(on viewport) {
+        <div class="flex flex-row absolute bottom-8 justify-center items-center">
+            <p class="italic flex px-2">Made with ❤ by </p>
+            <a class="flex bottom-16 size-8" href="https://github.com/spin3l/" >
+                <img ngSrc="github.png" width="24" height="24" />
+            </a>
+        </div>
+    } @placeholder {
+        <div class="flex flex-row absolute bottom-8">
+            <p class="italic flex px-2">Made with ❤ by </p>
+        </div>
+    } @loading(minimum 200ms) {
+        <div class="flex flex-row absolute bottom-8">
+            <p class="italic flex px-2">loading...</p>
+        </div>
+    }
+<ng-template #inactive_button>
+    <button 
+        class="bg-teal-400 border-amber-200 border-2 font-bold py-2 px-4 rounded-lg w-fit cursor-not-allowed">
+        Reset
+    </button>
+</ng-template>
+
+<ng-template #active_button>
+    <button 
+        class="bg-teal-200 hover:bg-teal-300 border-amber-200 border-2 font-bold py-2 px-4 rounded-lg w-fit"
+        (click)="gameService.newGame()">
+        Reset
+    </button>
+</ng-template>
+
+<ng-template #player_turn>
+    <h1 class="text-4xl"
+        [ngClass]="{
+            'text-teal-400': gameService.activePlayer == 'O',
+            'text-amber-500': gameService.activePlayer == 'X'
+        }">
+        {{ gameService.activePlayer }}'S TURN
+    </h1>
+</ng-template>
+
+<ng-template #player_won>
+    <h1 class=" text-amber-500 text-4xl underline"
+        [ngClass]="{'text-teal-400': gameService.activePlayer == 'O'}">
+        {{ gameService.activePlayer }} WON
+    </h1>
+</ng-template>
